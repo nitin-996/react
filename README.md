@@ -1,5 +1,6 @@
 # react
 
+- now under the hood instead of virtual dom now react use fiver.
 [react fiber](https://github.com/acdlite/react-fiber-architecture)
 
 # optional chaining operator
@@ -154,3 +155,7 @@ Here are some situations where you would use double curly braces in React:
    ```
 
 In summary, double curly braces are used in React to indicate that you are passing an object literal as a value. This pattern is particularly common when dealing with inline styles, event handlers, passing objects as props, updating state with objects, and destructuring props or state.
+
+# important points
+
+- in button onclick takes function as a input.

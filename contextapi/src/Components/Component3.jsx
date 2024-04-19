@@ -1,16 +1,32 @@
-import React from 'react'
-import { firstName } from '../App'
+import React, { useContext } from 'react';
+import { firstName } from '../App';
+
+// function Component3() {
+//   return (
+
+//     // consumer expect function that's why we use function but consumer context create callback hell stituation 
+//     // that's why we now will use usecontext()
+//     <firstName.Consumer>
+//       {(fname) => (
+//         <h1>My name is {fname}</h1>
+//       )}
+//     </firstName.Consumer>
+//   );
+// }
+
+// export default Component3;
+
+
+// using usecontext
+
 function Component3() {
-  return 
+  const fname = useContext(firstName)
 
-    // its consumer , it only wants function
-    <firstName.Consumer>{(fname)=>{
 
-    return <h1>my name is monoto {fname}<h1/>;
-    }}
-    </firstName.Consumer>
-   
   
+  return (
+<h1>this is {fname}</h1>
+  );
 }
 
-export default Component3
+export default Component3;
