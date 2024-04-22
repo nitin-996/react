@@ -117,6 +117,21 @@ In summary:
 - Use `useRef` for accessing DOM elements or storing mutable values across renders.
 - Use `useCallback` for memoizing functions, especially when passing them as props to child components to prevent unnecessary re-renders.
 
+In React's `useState` hook, `setCount` doesn't directly accept a callback function as an argument. Instead, you provide `useState` with an initial state value or a function that computes the initial state. After that, `setCount` is a function that allows you to update the state based on its current value or based on the previous state.
+
+For example:
+
+```jsx
+const [count, setCount] = useState(0);
+
+// Increment the count by 1 using the previous count value
+setCount(prevCount => prevCount + 1);
+```
+
+In this code, `setCount` is used with a function that takes the previous count (`prevCount`) and returns the updated count (`prevCount + 1`). This is a common pattern when you want to update the state based on its previous value.
+
+If you need to perform additional logic or side effects after the state has been updated, you can use other hooks like `useEffect` to achieve that. `useEffect` allows you to run code after a component renders and after state changes, which can be useful for handling side effects related to state updates.
+
 
 # when to use curly double curly braces
 
