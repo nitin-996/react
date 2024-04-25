@@ -1,6 +1,8 @@
 import React, {useId} from 'react'
 
 function InputBox({
+
+    // here we destucture the object val
     label,
     amount,
     onAmountChange,
@@ -37,7 +39,7 @@ function InputBox({
                     onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
                     disabled={currencyDisable}
                 >
-                    // don't use array index as keys 
+                    // don't use array index as keys bcz of perfomance issue
                         {currencyOptions.map((currency) => (
                             <option key={currency} value={currency}>
                             {currency}

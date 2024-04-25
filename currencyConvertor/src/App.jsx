@@ -41,7 +41,10 @@ function App() {
                        
                     }}
                 >
+                    {/* used component upper input box */}
                     <div className="w-full mb-1">
+
+                        {/*  this is jsx bcz of this syntax here does not look like object but in its component we are destructuring it as object. */}
                         <InputBox
                             label="From"
                             amount={amount}
@@ -51,6 +54,8 @@ function App() {
                             onAmountChange={(amount) => setAmount(amount)}
                         />
                     </div>
+{/* swap button */}
+
                     <div className="relative w-full h-0.5">
                         <button
                             type="button"
@@ -60,6 +65,8 @@ function App() {
                             swap
                         </button>
                     </div>
+
+                    {/* used component lower input box */}
                     <div className="w-full mt-1 mb-4">
                         <InputBox
                             label="To"
@@ -70,6 +77,7 @@ function App() {
                             amountDisable
                         />
                     </div>
+                    {/*  current convert button */}
                     <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
                         Convert {from.toUpperCase()} to {to.toUpperCase()}
                     </button>

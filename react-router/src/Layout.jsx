@@ -8,7 +8,7 @@ function Layout() {
   return (
    <>
    <Header/>
-   <Outlet/>
+   <Outlet/> {/*using outlet now header and footer will be same for every component bcz all components will render btw header and footer. in routes we difine layout and there within layout we defines components */}
    <Footer/>
 
    </>
