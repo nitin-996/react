@@ -231,7 +231,7 @@ In summary, double curly braces are used in React to indicate that you are passi
 - In button onclick property takes function as a input.
 - React router [navlink & Link](https://www.geeksforgeeks.org/link-and-navlink-components-in-react-router-dom/)
 
-`NavLink` and `Link` are components provided by React Router, a popular routing library for React applications. They serve similar purposes but have some differences in functionality:
+       `NavLink` and `Link` are components provided by React Router, a popular routing library for React applications. They serve similar purposes but have some differences in functionality:
 
 - **Link**: This is a basic component used for declarative navigation in React Router. It's similar to an `<a>` tag in HTML but optimized for React Router. You use `Link` to navigate between different routes in your application. For example:
   ```jsx
@@ -264,10 +264,40 @@ In summary, double curly braces are used in React to indicate that you are passi
   };
   ```
 
-In summary, `Link` is a basic component for navigation, while `NavLink` adds extra features like styling based on the active route. Use `Link` for simple navigation needs and `NavLink` when you want to style active links in your navigation menu.
+   In summary, `Link` is a basic component for navigation, while `NavLink` adds extra features like styling based on the active route. Use `Link` for simple navigation needs and `NavLink` when you want to style active links in your navigation menu.
 
 - [useid hook](https://react.dev/reference/react/useId)
+
+- don't use array index as keys bcz it degrade the react performance.
 
 - The React Outlet component acts as a designated area within a parent route where child routes can be rendered. It essentially creates a placeholder for the content of child routes to be injected into the parent route's layout. 
 
 - [react loader](https://reactrouter.com/en/main/route/loader)
+- when you want to take data from local storage convert it into json and when u are saving data in local storage store it as string bcz it store data in string data type.means you have to parse in json when try to get and parse it in string when trying to store it.
+
+# Redux, state and action are fundamental concepts that work together to manage your application's data:
+
+* **State:**  This represents the current condition of your application at any given point in time. It's essentially a JavaScript object tree that stores all the data your application needs to function.  Imagine it as a snapshot of all the relevant information displayed on the screen and behind the scenes.
+
+* **Action:**  This describes an event that happened in your application. It's a plain JavaScript object that signals the need for a state change.  Think of it as a message indicating something happened (like a button press, data fetched) and potentially including additional details (like the data itself). Actions typically have two key properties:
+    * **type:**  A string that uniquely identifies the type of action (e.g., "userLoggedIn", "itemAddedToCart").
+    * **payload (optional):**  Additional data associated with the action, if needed (e.g., the username for "userLoggedIn" or the item details for "itemAddedToCart").
+
+* In Redux, an action is a plain JavaScript object that represents an intention to change the store’s state. Action objects must have a type property with a user-defined string value that describes the action being taken.
+
+* Optional properties can be added to the action object. One common property added is conventionally called payload, which is used to supply data necessary to perform the desired action.    
+
+Here's how they work together:
+
+1. **Something happens in your application:** A user interacts with the UI (clicks a button, submits a form), or some asynchronous event occurs (data fetched from an API).
+2. **An action is dispatched:**  The UI component or event handler creates an action object describing what happened. This action is then "dispatched" to the Redux store.
+3. **Reducers update the state:** The Redux store holds the current state and a set of reducer functions. Each reducer is a pure function that takes the previous state and the dispatched action as arguments. Based on the action type, the reducer updates a specific part of the state immutably (without modifying the original state object) and returns a new state object.
+4. **Components re-render:** The store notifies any connected components that the state has changed. These components re-render themselves based on the new state, reflecting the changes in the UI.
+
+This unidirectional data flow (action -> reducer -> state update -> UI re-render) is a core principle of Redux, making it predictable and easier to debug your application's state changes.
+
+- [react-redux](https://www.freecodecamp.org/news/redux-and-redux-toolkit-for-beginners/)
+
+- [onsubmit](https://www.geeksforgeeks.org/react-onsubmit-event/) also takes event as input.
+- [onchange](https://www.geeksforgeeks.org/react-onchange-event/)
+- [map in redux use key concept](https://legacy.reactjs.org/docs/lists-and-keys.html)
