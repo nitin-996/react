@@ -301,3 +301,7 @@ This unidirectional data flow (action -> reducer -> state update -> UI re-render
 - [onsubmit](https://www.geeksforgeeks.org/react-onsubmit-event/) also takes event as input.
 - [onchange](https://www.geeksforgeeks.org/react-onchange-event/)
 - [map in redux use key concept](https://legacy.reactjs.org/docs/lists-and-keys.html)
+- if you created the project with vite then there is diffrent method to access the env and same for nextjs, create react also.
+
+- A collection in Appwrite is a logical grouping of documents, similar to a table in SQL or a collection in MongoDB.
+Collections allow you to define a schema for the data they store, specifying fields and their data types.
