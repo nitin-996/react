@@ -298,6 +298,8 @@ This unidirectional data flow (action -> reducer -> state update -> UI re-render
 
 - [react-redux](https://www.freecodecamp.org/news/redux-and-redux-toolkit-for-beginners/)
 
+- [redux toolkit docs](https://redux-toolkit.js.org/api/createSlice)
+
 - [onsubmit](https://www.geeksforgeeks.org/react-onsubmit-event/) also takes event as input.
 - [onchange](https://www.geeksforgeeks.org/react-onchange-event/)
 - [map in redux use key concept](https://legacy.reactjs.org/docs/lists-and-keys.html)
