@@ -24,3 +24,26 @@ export default function App() {
       </div>    
     );
 }
+
+
+
+// ##################################### same type of code ################################
+
+import React from 'react';
+
+export default function App() {
+    
+    const [css , setcss]= React.useState(false)
+    
+    const set = ()=>{
+        setcss(true)
+    }
+    
+    return (
+        <div>
+        {css ? <p className = "active">Style me!</p> : <p>Style me!</p>}
+            
+            <button onClick={set}>Toggle style</button>
+        </div>
+    );
+}
