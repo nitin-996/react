@@ -1,8 +1,13 @@
 import React from 'react'
 
-function ButtonComp({Children}) {
+function ButtonComp({children , label ,isSelect , onSelect}) {
   return (
-    <button >{Children}</button>
+    <button className={isSelect ? 'bg-orange-100' : 'bg-sky-500' } type='submit' 
+    onClick={onSelect}
+    >
+      {label}
+    {children}
+    </button>
   )
 }
 

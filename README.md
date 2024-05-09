@@ -228,6 +228,8 @@ In summary, double curly braces are used in React to indicate that you are passi
 
 # important points
 
+- [conditional rendering](https://react.dev/learn/conditional-rendering)
+- every event takes a function as input.
 - In button onclick property takes function as a input.
 - React router [navlink & Link](https://www.geeksforgeeks.org/link-and-navlink-components-in-react-router-dom/)
 
