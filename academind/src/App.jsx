@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CORE_CONCEPTS } from "./data";
 import CoreConcept from "./Component/CoreComponent";
 import ButtonComp from "./Component/ButtonComp";
+import Tagbutton from "./Component/Tagbutton";
 
 function App() {
   const [select, setSelect] = useState()
@@ -39,6 +40,12 @@ function App() {
           onSelect={() => { handlefun("demo") }}
           label="demo"></ButtonComp>
       </menu>
+
+
+      <Tagbutton 
+      
+      buttoncontainer="div"
+      >passing htnl tag as prop</Tagbutton>
 
     </>
   );
