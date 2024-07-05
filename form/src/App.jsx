@@ -81,7 +81,7 @@ export default App;
 //     setNaam((previousState) => {
 //       return {
 //         ...previousState,  // Spread the previous state to retain other properties
-//         [name]: value  // Update the property specified by 'name' with the new 'value'
+//         [name]: value  // Update the property specified by 'name' with the new 'value'7u
 //       };
 //     });
 //   };

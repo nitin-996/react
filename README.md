@@ -1,7 +1,10 @@
 # react
 
+- React project come with a build process that transforms jsxcode (behind the scene) to code that does work in the browser.
+- component name should be capital letter and give a render object
 - now under the hood instead of virtual dom now react use fiver.
 [react fiber](https://github.com/acdlite/react-fiber-architecture)
+- {} jsx in here if statements, for-loops , function definitons and other block statements are not allowed here. only expression that directly produce the value.
 
 # optional chaining operator
 
