@@ -31,7 +31,21 @@ Let's break down how the optional chaining operator is used in your code:
 
 In summary, the question mark (`?`) in your code helps prevent errors by checking if an object or property exists before attempting to access or use it. If the object or property is null or undefined, the operation is skipped, avoiding potential runtime errors.
 
+### Rules of Hooks
+
+1. **Only Call Hooks at the Top Level**
+   - **Do not call Hooks inside loops, conditions, or nested functions.**
+
+2. **Only Call Hooks from React Functions**
+   - **Do not call hooks from regular JavaScript functions.**
+   
+# usestate
+
+![workflow](react_topics/public/state.png)
+
+
 # hooks explaination
+
 
 Sure, I'll explain when to use `useEffect`, `useRef`, and `useCallback` hooks in React, along with examples for each.
 
