@@ -11,13 +11,17 @@ const [ isPlayer, setPlayer] = useState(player)
     //   direct method (This method directly updates the state using the value of prev at the time when setEdit is called. This can lead to unexpected results if the state update is part of multiple rapid or asynchronous updates because prev might not be the most up-to-date state.)
     // return setEdit(!edit);
     // react recommand to use below function approach for updated state.
-    return setEdit((edit)=>{!edit})
+    return setEdit((edit)=>!edit)
+  }
+
+  const handleChange = (e)=>{
+   return setPlayer(e.target.value)
   }
 
   let players = <span className="player-name">{isPlayer}</span>;
 
   if (edit) {
-    players = <input className="player" type="text" required value={isPlayer} />;
+    players = <input className="player" type="text" required value={isPlayer} onChange={handleChange}/>;
   }
   return (
     <li>
