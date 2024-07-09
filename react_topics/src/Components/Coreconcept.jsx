@@ -2,7 +2,7 @@
 
 
 
-function Coreconcept({title,description,image}){
+export default function Coreconcept({title,description,image}){
   return(
     <li>
     <img src={image} alt={title}/>
@@ -12,4 +12,4 @@ function Coreconcept({title,description,image}){
   )
 }
 
-export default Coreconcept
+ 

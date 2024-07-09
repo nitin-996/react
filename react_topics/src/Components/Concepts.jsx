@@ -1,7 +1,7 @@
 import { CORE_CONCEPTS } from "../Data";
 import Coreconcept from "./Coreconcept";
 
-function Concepts() {
+export default function Concepts() {
   return (
     <>
       <h2>Time to get started!</h2>
@@ -18,4 +18,3 @@ function Concepts() {
 }
 
 
-export default Concepts

@@ -1,8 +1,8 @@
 import { EXAMPLES } from "../Data";
-import { useState } from "react";
-import {Button} from "./Button"
+import { useState }  from "react";
+import  Button  from "./Button"
 
-function Dynamic(){
+export default function Dynamic(){
 
     const [descrip, setdescrip] = useState();
 
@@ -64,4 +64,3 @@ function Dynamic(){
     </>)
 }
 
-export default Dynamic

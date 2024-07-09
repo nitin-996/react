@@ -5,7 +5,7 @@
 - now under the hood instead of virtual dom now react use fiver.
 [react fiber](https://github.com/acdlite/react-fiber-architecture)
 - {} jsx in here if statements, for-loops , function definitons and other block statements are not allowed here. only expression that directly produce the value.
-
+- [Import and Export](https://www.geeksforgeeks.org/reactjs-importing-exporting/)
 # optional chaining operator
 
 
