@@ -6,6 +6,9 @@
 [react fiber](https://github.com/acdlite/react-fiber-architecture)
 - {} jsx in here if statements, for-loops , function definitons and other block statements are not allowed here. only expression that directly produce the value.
 - [Import and Export](https://www.geeksforgeeks.org/reactjs-importing-exporting/)
+- [spread and rest operator](https://www.freecodecamp.org/news/javascript-spread-and-rest-operators/)
+- [two-way-binding](https://medium.com/front-end-weekly/two-way-binding-will-make-your-react-code-better-f58865923538)
+
 # optional chaining operator
 
 
@@ -42,6 +45,10 @@ In summary, the question mark (`?`) in your code helps prevent errors by checkin
 # usestate
 
 ![workflow](react_topics/public/state.png)
+
+# Lift-State
+
+![lift state means](tic-tac-toe-starting-project/public/lift_state.png)
 
 
 # hooks explaination
