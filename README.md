@@ -7,7 +7,8 @@
 - {} jsx in here if statements, for-loops , function definitons and other block statements are not allowed here. only expression that directly produce the value.
 - [Import and Export](https://www.geeksforgeeks.org/reactjs-importing-exporting/)
 - [spread and rest operator](https://www.freecodecamp.org/news/javascript-spread-and-rest-operators/)
-- [two-way-binding](https://medium.com/front-end-weekly/two-way-binding-will-make-your-react-code-better-f58865923538)
+- [two-way-binding](https://stackoverflow.com/questions/77777432/what-is-two-way-binding-in-react)
+- [derived state](https://stackoverflow.com/questions/58288286/what-is-derived-state-in-react-and-why-is-it-important)
 
 # optional chaining operator
 

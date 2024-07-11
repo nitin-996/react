@@ -1,11 +1,6 @@
 
-const initialBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
 
-export default function GameBoard({ onSelectSquare , turns } ) {
+export default function GameBoard({ onSelectSquare , board } ) {
 
   // , activePlayerSymbol 
   // this state handled the update of X or O in gameboard
@@ -26,23 +21,15 @@ export default function GameBoard({ onSelectSquare , turns } ) {
   //   onSelectSquare();
   // }
 
-const gameboard = initialBoard;
-
-for (const turn of turns){ 
-  const {square , player} = turn;
-  const {row,col} = square;
-
-  gameboard[row][col] = player
-}
 
   return (
     <ol id="game-board">
-      {gameboard.map((row, rowindex) => (
+      {board.map((row, rowindex) => (
         <li key={rowindex}>
           <ol>
             {row.map((playerSymbol, colindex) => (
               <li key={colindex}>
-                <button onClick={()=>onSelectSquare(rowindex,colindex)}>
+                <button onClick={()=>onSelectSquare(rowindex,colindex)} disabled={playerSymbol !== null}>
                   {" "}
                   {playerSymbol}
                 </button>
