@@ -9,6 +9,7 @@
 - [spread and rest operator](https://www.freecodecamp.org/news/javascript-spread-and-rest-operators/)
 - [two-way-binding](https://stackoverflow.com/questions/77777432/what-is-two-way-binding-in-react)
 - [derived state](https://stackoverflow.com/questions/58288286/what-is-derived-state-in-react-and-why-is-it-important)
+- [convert string to int multiple methods ](https://www.freecodecamp.org/news/how-to-convert-a-string-to-a-number-in-javascript/)
 
 # optional chaining operator
 

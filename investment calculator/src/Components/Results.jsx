@@ -1,42 +1,48 @@
-import { calculateInvestmentResults, formatter } from '../util/investment.js';
 
-export default function Results({ input }) {
-  const resultsData = calculateInvestmentResults(input);
-  const initialInvestment =
-    resultsData[0].valueEndOfYear -
-    resultsData[0].interest -
-    resultsData[0].annualInvestment;
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const Results = (props) => {
   return (
-    <table id="result">
+    <table className="result">
       <thead>
         <tr>
           <th>Year</th>
-          <th>Investment Value</th>
+          <th>Total Savings</th>
           <th>Interest (Year)</th>
           <th>Total Interest</th>
           <th>Invested Capital</th>
         </tr>
       </thead>
       <tbody>
-        {resultsData.map((yearData) => {
-          const totalInterest =
-            yearData.valueEndOfYear -
-            yearData.annualInvestment * yearData.year -
-            initialInvestment;
-          const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
-
-          return (
-            <tr key={yearData.year}>
-              <td>{yearData.year}</td>
-              <td>{formatter.format(yearData.valueEndOfYear)}</td>
-              <td>{formatter.format(yearData.interest)}</td>
-              <td>{formatter.format(totalInterest)}</td>
-              <td>{formatter.format(totalAmountInvested)}</td>
-            </tr>
-          );
-        })}
+        {props.data.map((yearData) => (
+          <tr key={yearData.year}>
+            <td>{yearData.year}</td>
+            <td>{formatter.format(yearData.savingsEndOfYear)}</td>
+            <td>{formatter.format(yearData.yearlyInterest)}</td>
+            <td>
+              {formatter.format(
+                yearData.savingsEndOfYear -
+                  props.initialInvestment -
+                  yearData.yearlyContribution * yearData.year
+              )}
+            </td>
+            <td>
+              {formatter.format(
+                props.initialInvestment +
+                  yearData.yearlyContribution * yearData.year
+              )}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
-}
+};
+
+export default Results;

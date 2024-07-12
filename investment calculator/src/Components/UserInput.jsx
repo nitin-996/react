@@ -1,52 +1,101 @@
-export default function UserInput({ onChange, userInput }) {
-    return (
-      <section id="user-input">
-        <div className="input-group">
-          <p>
-            <label>Initial Investment</label>
-            <input
-              type="number"
-              required
-              value={userInput.initialInvestment}
-              onChange={(event) =>
-                onChange('initialInvestment', event.target.value)
-              }
-            />
-          </p>
-          <p>
-            <label>Annual Investment</label>
-            <input
-              type="number"
-              required
-              value={userInput.annualInvestment}
-              onChange={(event) =>
-                onChange('annualInvestment', event.target.value)
-              }
-            />
-          </p>
-        </div>
-        <div className="input-group">
-          <p>
-            <label>Expected Return</label>
-            <input
-              type="number"
-              required
-              value={userInput.expectedReturn}
-              onChange={(event) =>
-                onChange('expectedReturn', event.target.value)
-              }
-            />
-          </p>
-          <p>
-            <label>Duration</label>
-            <input
-              type="number"
-              required
-              value={userInput.duration}
-              onChange={(event) => onChange('duration', event.target.value)}
-            />
-          </p>
-        </div>
-      </section>
-    );
-  }
+import { useState } from 'react';
+
+
+const initialUserInput = {
+  'current-savings': 10000,
+  'yearly-contribution': 1200,
+  'expected-return': 7,
+  duration: 10,
+};
+
+const UserInput = ({onCalculate}) => {
+  const [userInput, setUserInput] = useState(initialUserInput);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    onCalculate(userInput);
+  };
+
+  const resetHandler = () => {
+    setUserInput(initialUserInput);
+  };
+
+  const inputChangeHandler = (input, value) => {
+    setUserInput((prevInput) => {
+      return {
+        ...prevInput,
+        [input]: +value,
+      };
+    });
+  };
+
+  return (
+    <form onSubmit={submitHandler} id="user-input">
+      <div className='input-group'>
+        <p>
+          <label htmlFor="current-savings">Current Savings ($)</label>
+          <input
+            onChange={(event) =>
+              inputChangeHandler('current-savings', event.target.value)
+            }
+            value={userInput['current-savings']}
+            type="number"
+            id="current-savings"
+          />
+        </p>
+        <p>
+          <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
+          <input
+            onChange={(event) =>
+              inputChangeHandler('yearly-contribution', event.target.value)
+            }
+            value={userInput['yearly-contribution']}
+            type="number"
+            id="yearly-contribution"
+          />
+        </p>
+      </div>
+      <div className='input-group'>
+        <p>
+          <label htmlFor="expected-return">
+            Expected Interest (%, per year)
+          </label>
+          <input
+            onChange={(event) =>
+              inputChangeHandler('expected-return', event.target.value)
+            }
+            value={userInput['expected-return']}
+            type="number"
+            id="expected-return"
+          />
+        </p>
+        <p>
+          <label htmlFor="duration">Investment Duration (years)</label>
+          <input
+            onChange={(event) =>
+              inputChangeHandler('duration', event.target.value)
+            }
+            value={userInput['duration']}
+            type="number"
+            id="duration"
+          />
+        </p>
+      </div>
+      <p className="actions">
+        <button
+          onClick={resetHandler}
+          type="reset"
+          className="buttonAlt"
+        >
+          Reset
+        </button>
+        <button type="submit" className="button">
+          Calculate
+        </button>
+      </p>
+    </form>
+  );
+};
+
+export default UserInput;
