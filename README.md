@@ -13,6 +13,9 @@
 - [css module](https://github.com/css-modules/css-modules)
 - [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
 - [strict mode](https://www.geeksforgeeks.org/what-is-strictmode-in-react/)
+- [Html input attributes](https://www.w3schools.com/html/html_form_attributes.asp)
+- [useRef current methods article](https://stackoverflow.com/questions/73964594/react-how-many-methods-have-ref-current)
+
 
 # optional chaining operator
 
@@ -61,162 +64,19 @@ In summary, the question mark (`?`) in your code helps prevent errors by checkin
 
 Sure, I'll explain when to use `useEffect`, `useRef`, and `useCallback` hooks in React, along with examples for each.
 
-1. `useEffect`:
+1. [useEffect](https://gurindernarang.medium.com/side-effect-useeffect-in-react-2dc6cdf0b9c5#:~:text=In%20React%2C%20%E2%80%9Cside%20effects%E2%80%9D,interactions%20with%20the%20outside%20world.):
    The `useEffect` hook is used to perform side effects in a functional component. Side effects can include data fetching, subscriptions, or manually changing the DOM.
 
-   Example:
-   ```jsx
-   import React, { useState, useEffect } from 'react';
-
-   const Timer = () => {
-     const [count, setCount] = useState(0);
-
-     useEffect(() => {
-       const interval = setInterval(() => {
-         setCount((prevCount) => prevCount + 1);
-       }, 1000);
-
-       return () => clearInterval(interval);
-     }, []); // Empty dependency array means this effect runs only once after initial render
-
-     return <div>Count: {count}</div>;
-   };
-
-   export default Timer;
-   ```
-
-   In this example, `useEffect` is used to create an interval timer that updates the `count` state every second. The cleanup function returned from `useEffect` clears the interval when the component unmounts.
-
-2. `useRef`:
-  `useRef` is a React hook that provides a way to persist mutable values across renders without causing re-renders when the value changes. Unlike state variables (`useState`), changes to a `useRef` value do not trigger re-renders of components.
-
-You should use `useRef` in the following situations:
-
- **Referencing DOM elements:** If you need to interact with DOM elements directly (e.g., focusing an input field, measuring an element), `useRef` can be used to create a reference to the DOM node.
-
-   ```jsx
-   import React, { useRef, useEffect } from 'react';
-
-   const App = () => {
-     const inputRef = useRef(null);
-
-     useEffect(() => {
-       inputRef.current.focus(); // Focuses the input element on initial render
-     }, []);
-
-     return <input ref={inputRef} />;
-   };
-
-   export default App;
-   ```
+   
+2. [useRef](https://www.w3schools.com/react/react_useref.asp) is a React hook that provides a way to persist mutable values across renders without causing re-renders when the value changes. Unlike state variables (`useState`), changes to a `useRef` value do not trigger re-renders of components.
 
  **Storing mutable values without triggering re-renders:** Since changes to `useRef` values don't cause re-renders, you can use it to store values that you don't want to trigger component updates. This is useful for values that need to persist across renders but don't affect the UI.
 
-   ```jsx
-   import React, { useRef, useState } from 'react';
-
-   const App = () => {
-     const renderCount = useRef(0);
-     const [count, setCount] = useState(0);
-
-     renderCount.current++; // Increment on every render
-
-     return (
-       <div>
-         <p>Render count: {renderCount.current}</p>
-         <p>Current count: {count}</p>
-         <button onClick={() => setCount(count + 1)}>Increment</button>
-       </div>
-     );
-   };
-
-   export default App;
-   ```
-
- **Storing and accessing previous values:** You can use `useRef` to store and access previous values of state or props, especially inside `useEffect` or event handlers.
-
-   ```jsx
-   import React, { useRef, useEffect } from 'react';
-
-   const App = () => {
-     const prevCountRef = useRef(null);
-     const [count, setCount] = useState(0);
-
-     useEffect(() => {
-       prevCountRef.current = count; // Store previous value
-     });
-
-     const handleButtonClick = () => {
-       console.log('Previous count:', prevCountRef.current); // Access previous value
-       setCount(count + 1);
-     };
-
-     return (
-       <div>
-         <p>Current count: {count}</p>
-         <button onClick={handleButtonClick}>Increment</button>
-       </div>
-     );
-   };
-
-   export default App;
-   ```
-
-
-
+  
 3. `useCallback`:
    The `useCallback` hook is used to memoize functions to avoid unnecessary re-creations, especially when passing functions as props to child components.
 
-   Example:
-   ```jsx
-   import React, { useState, useCallback } from 'react';
-
-   const ParentComponent = () => {
-     const [count, setCount] = useState(0);
-
-     const incrementCount = useCallback(() => {
-       setCount((prevCount) => prevCount + 1);
-     }, []); // Empty dependency array means this callback doesn't depend on any props or state
-
-     return (
-       <div>
-         <p>Count: {count}</p>
-         <ChildComponent increment={incrementCount} />
-       </div>
-     );
-   };
-
-   const ChildComponent = ({ increment }) => {
-     // Some child component logic here
-     return <button onClick={increment}>Increment Count</button>;
-   };
-
-   export default ParentComponent;
-   ```
-
-   In this example, `useCallback` is used to memoize the `incrementCount` function so that it's not recreated on every render of the `ParentComponent`. This optimization can be beneficial when passing callbacks to child components to prevent unnecessary re-renders.
-
-In summary:
-- Use `useEffect` for managing side effects in functional components.
-- Use `useRef` for accessing DOM elements or storing mutable values across renders.
-- Use `useCallback` for memoizing functions, especially when passing them as props to child components to prevent unnecessary re-renders.
-
-In React's `useState` hook, `setCount` doesn't directly accept a callback function as an argument. Instead, you provide `useState` with an initial state value or a function that computes the initial state. After that, `setCount` is a function that allows you to update the state based on its current value or based on the previous state.
-
-For example:
-
-```jsx
-const [count, setCount] = useState(0);
-
-// Increment the count by 1 using the previous count value
-setCount(prevCount => prevCount + 1);
-```
-
-In this code, `setCount` is used with a function that takes the previous count (`prevCount`) and returns the updated count (`prevCount + 1`). This is a common pattern when you want to update the state based on its previous value.
-
-If you need to perform additional logic or side effects after the state has been updated, you can use other hooks like `useEffect` to achieve that. `useEffect` allows you to run code after a component renders and after state changes, which can be useful for handling side effects related to state updates.
-
-
+  
 # when to use curly double curly braces
 
 - whenever passing an object in jsx.
