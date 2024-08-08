@@ -1,47 +1,60 @@
-import React, { useRef, useState } from 'react'
-import ResultModal from './ResultModal'
+import React, { useRef, useState, useEffect } from 'react';
+import ResultModal from './ResultModal';
 
-function Timer({title ,targettime}) {
+function Timer({ title, targettime }) {
+  const [timeRemaining, setTimeRemaining] = useState(targettime * 1000);
+  const timer = useRef();
+  const dialog = useRef();
 
-const [ timerexpired, setTimerexpired ] = useState(false)
-const [ timerStarted , setTimerStarted ] = useState(false)
-const  timer = useRef()
-const dialog = useRef();
-
-    function handleStart(){
-        timer.current = setTimeout(()=>{
-            setTimerexpired(true)
-            dialog.current.showModal();
-        },
-        targettime * 1000
-    )
-
-    setTimerStarted(true);
+  useEffect(() => {
+    if (timeRemaining <= 0 && timer.current) {
+      clearInterval(timer.current);
+      timer.current = null;
+      dialog.current.open();
     }
+  }, [timeRemaining]);
 
-    function handleStop(){
-        clearTimeout(timer.current) 
-        setTimerStarted(false)
+  function handleReset() {
+    setTimeRemaining(targettime * 1000);
+  }
+
+  const timerActive = timeRemaining > 0 && timeRemaining < targettime * 1000;
+
+  function handleStart() {
+    if (!timer.current) {
+      timer.current = setInterval(() => {
+        setTimeRemaining((prevTime) => prevTime - 10);
+      }, 10);
     }
+  }
+
+  function handleStop() {
+    if (timer.current) {
+      clearInterval(timer.current);
+      timer.current = null;
+      dialog.current.open();
+    }
+  }
+
   return (
     <>
+      <ResultModal ref={dialog} targetTime={targettime} remainingTime={timeRemaining} onReset={handleReset} />
+      <section className="challenge">
+        <h2>{title}</h2>
 
-   {timerexpired &&  <ResultModal ref={dialog} targetTime={targettime} result="lost"/>}
-   <section className='challenge'>
-    <h2>{title}</h2>
-    {timerexpired && <p>you lost!</p>} 
-    <p className='challenge-time'>
-{targettime} second{targettime > 0 ? "s" : ""}
-    </p>
-        <button onClick={timerStarted ? handleStop : handleStart }>{timerStarted ? "stop" : "start" } challenge</button>
+        <p className="challenge-time">
+          {targettime} second{targettime !== 1 ? 's' : ''}
+        </p>
+        <button onClick={timerActive ? handleStop : handleStart}>
+          {timerActive ? 'stop' : 'start'} challenge
+        </button>
 
-<p className={timerStarted ?? "active" }>
-    {timerStarted ? "time is running..." : "timer is inactive"}
-</p>
-   </section>  
-   
-   </>
-   )
+        <p className={timerActive ? 'active' : ''}>
+          {timerActive ? 'time is running...' : 'timer is inactive'}
+        </p>
+      </section>
+    </>
+  );
 }
 
-export default Timer
+export default Timer;

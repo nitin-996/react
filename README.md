@@ -15,6 +15,9 @@
 - [strict mode](https://www.geeksforgeeks.org/what-is-strictmode-in-react/)
 - [Html input attributes](https://www.w3schools.com/html/html_form_attributes.asp)
 - [useRef current methods article](https://stackoverflow.com/questions/73964594/react-how-many-methods-have-ref-current)
+- [useRef explained](https://www.dhiwise.com/post/exploring-useref-a-must-know-hook-for-every-react-developer)
+- [useImperativeHandle hook](https://medium.com/@nadeem.ahmad.na/understanding-useimperativehandle-a-powerful-hook-for-react-development-46063e44e52a)
+- [create portal 146 video udemy](https://react.dev/reference/react-dom/createPortal)
 
 
 # optional chaining operator
