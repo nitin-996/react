@@ -1,7 +1,7 @@
 
 import { Tasks } from "./Tasks";
 
-function SelectedProject({project , onDelete}){
+function SelectedProject({project , onDelete , onTask , tasks , onDeleteTask}){
 
     const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US' ,{
         year: 'numeric',
@@ -20,7 +20,7 @@ function SelectedProject({project , onDelete}){
                 <p className="text-stone-600 whitespace-pre-wrap">{project.description}</p>
                 </header>
 
-                <Tasks/>
+                <Tasks tasks={tasks} onTask={onTask} onDeleteNewTask={onDeleteTask}/>
         </div>
     )
 }

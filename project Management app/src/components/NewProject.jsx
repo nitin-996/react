@@ -22,7 +22,7 @@ function NewProject({onAdd , onCancel}) {
       return;
     }
     
-
+// this data is send to handleAddProject (in app.js component) as argument.
     onAdd({title:enteredTitle,
       description: enterDescription,
       dueDate: entereddueDate

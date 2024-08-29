@@ -18,6 +18,7 @@
 - [useRef explained](https://www.dhiwise.com/post/exploring-useref-a-must-know-hook-for-every-react-developer)
 - [useImperativeHandle hook](https://medium.com/@nadeem.ahmad.na/understanding-useimperativehandle-a-powerful-hook-for-react-development-46063e44e52a)
 - [create portal 146 video udemy](https://react.dev/reference/react-dom/createPortal)
+- [Prop drilling ](https://www.freecodecamp.org/news/prop-drilling-in-react-explained-with-examples/)refers to the process of passing down props through multiple layers of components, even when some of those components do not directly use the props.
 
 
 # optional chaining operator
