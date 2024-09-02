@@ -20,7 +20,8 @@
 - [create portal 146 video udemy](https://react.dev/reference/react-dom/createPortal)
 - [Prop drilling ](https://www.freecodecamp.org/news/prop-drilling-in-react-explained-with-examples/)refers to the process of passing down props through multiple layers of components, even when some of those components do not directly use the props.
 
-
+- [contextapi](https://www.freecodecamp.org/news/context-api-in-react/).The default value set when creating the context is only used if a component that was not wrapped by the provider component tries to access the context value.
+- [useReducer](https://dev.to/spukas/3-reasons-to-usereducer-over-usestate-43ad)
 # optional chaining operator
 
 

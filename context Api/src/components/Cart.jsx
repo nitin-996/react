@@ -1,4 +1,15 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
+//  to consume context we need two thing.
+// 1. first:- import your created context
+// 2. second:- need to use useContext hook to consume the context
+
+import { useContext } from "react";
+import { CartContext } from "../store/shopping-cart-context";
+
+export default function Cart({  onUpdateItemQuantity }) {
+
+  const cartctx = useContext(CartContext)
+  const items = cartctx.items
+  
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
