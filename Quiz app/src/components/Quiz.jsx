@@ -6,9 +6,11 @@ import QuestionTimer from "./QuestionTimer";
 
 export default function Quiz() {
   // yha answers store kerna h
+  const [highlightCorrectAnswer , setHighlightCorrectAnswer] = useState('')
   const [userAnswers, setUserAnswers] = useState([]);
-  const activeQuestionIndex = userAnswers?.length;
+  const activeQuestionIndex = highlightCorrectAnswer === '' ? userAnswers?.length : userAnswers.length - 1
   const quizIsComplete = Questions.length === activeQuestionIndex;
+console.log(activeQuestionIndex);
 
 
   /* In React, when a parent component re-renders, all of its child components also re-render by default.
@@ -31,14 +33,36 @@ export default function Quiz() {
   It’s useful when you notice unnecessary re-renders or when you’re working with performance-sensitive code.*/
 
 
+ 
+
   const handleSelectAnswer = useCallback(function handleSelectAnswer(selectedAnswer) {
+
+    setHighlightCorrectAnswer('answered') // 1st re-render
+
     setUserAnswers((prevValue) => {
       const correctAnswers = [...prevValue, selectedAnswer];
-      console.log(correctAnswers);
-      
-      return correctAnswers;
+      return correctAnswers;  // 2nd re-render
     });
-  })
+
+    setTimeout(() => {
+      const correctAnswer = Questions[activeQuestionIndex].answers[0]
+    
+    if (correctAnswer === selectedAnswer){
+      setHighlightCorrectAnswer('correct')  //3rd re-render
+                    }
+             else{
+               setHighlightCorrectAnswer('wrong')  //3rd re-render
+          }
+
+          setTimeout(() => {
+            setHighlightCorrectAnswer('')   // 4th re-render
+          }, 2000);
+      
+    }, 1000);
+  },[activeQuestionIndex])
+
+  console.log(highlightCorrectAnswer);
+  
   const handleSkipAnswer = useCallback(()=>handleSelectAnswer(null),[handleSelectAnswer])
 
   if(quizIsComplete){
@@ -49,6 +73,12 @@ export default function Quiz() {
   
 
 
+ 
+    
+
+
+   
+  
   // Shuffle answers for the current question
   const shuffleAnswers = [...Questions[activeQuestionIndex]?.answers];
   shuffleAnswers.sort(() => Math.random() - 0.5);
@@ -60,17 +90,30 @@ export default function Quiz() {
                     {/* no answer per automatic null dal dega array me */}
                    <QuestionTimer key={activeQuestionIndex} Timeout={15000} onTimeout={handleSkipAnswer}/>
             <h2>{Questions[activeQuestionIndex]?.text}</h2>
+            
             <ul id="answers">
-              {shuffleAnswers.map((answer) => (
-                <li key={answer} className="answer">
+              {shuffleAnswers.map((answer) =>  {
+const isSelected = userAnswers[userAnswers.length - 1] === answer;
 
-                  {/* yha answer dene per array me answer push hoga */}
-                  <button onClick={() => handleSelectAnswer(answer)}>
-                    {answer}
-                  </button>
-                  
-                </li>
-              ))}
+let cssStyle = '';
+ if(highlightCorrectAnswer === "answered" && isSelected){
+  cssStyle = 'selected'
+ }
+
+ if((highlightCorrectAnswer === "correct" || highlightCorrectAnswer === "wrong") && isSelected) {
+cssStyle = highlightCorrectAnswer
+ }
+                return <li key={answer} className="answer">
+
+                {/* yha answer dene per array me answer push hoga */}
+                
+                <button className={cssStyle} onClick={() => handleSelectAnswer(answer)}>
+                  {answer}
+                </button>
+                
+              </li>
+              }
+              )}
               
             </ul>
           </div>
