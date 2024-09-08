@@ -1,17 +1,20 @@
-import { useCallback, useState } from "react";
-import Questions from "../Questions";
-import complete from '../assets/quiz-complete.png'
-import QuestionTimer from "./QuestionTimer";
+import { useCallback, useRef, useState } from "react"
 
+import Question from './Question'
+import complete from "../assets/quiz-complete.png";
+import Questions from "../Questions";
 
 export default function Quiz() {
   // yha answers store kerna h
-  const [highlightCorrectAnswer , setHighlightCorrectAnswer] = useState('')
+  const [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState("");
   const [userAnswers, setUserAnswers] = useState([]);
-  const activeQuestionIndex = highlightCorrectAnswer === '' ? userAnswers?.length : userAnswers.length - 1
+  const activeQuestionIndex =
+    highlightCorrectAnswer === ""
+      ? userAnswers?.length
+      : userAnswers.length - 1;
   const quizIsComplete = Questions.length === activeQuestionIndex;
-console.log(activeQuestionIndex);
-
+  console.log(activeQuestionIndex);
+  
 
   /* In React, when a parent component re-renders, all of its child components also re-render by default.
    One reason for these re-renders is the change in props passed from the parent to the child.
@@ -32,92 +35,63 @@ console.log(activeQuestionIndex);
   Avoid Premature Optimization: If your app is small or doesn’t have performance issues, you don’t always need useCallback. 
   It’s useful when you notice unnecessary re-renders or when you’re working with performance-sensitive code.*/
 
+  const handleSelectAnswer = useCallback(
+    function handleSelectAnswer(selectedAnswer) {
+      setHighlightCorrectAnswer("answered"); // 1st re-render
 
- 
+      setUserAnswers((prevValue) => {
+        const correctAnswers = [...prevValue, selectedAnswer];
+        return correctAnswers; // 2nd re-render
+      });
 
-  const handleSelectAnswer = useCallback(function handleSelectAnswer(selectedAnswer) {
+      setTimeout(() => {
+        const correctAnswer = Questions[activeQuestionIndex].answers[0];
 
-    setHighlightCorrectAnswer('answered') // 1st re-render
+        if (correctAnswer === selectedAnswer) {
+          setHighlightCorrectAnswer("correct"); //3rd re-render
+        } else {
+          setHighlightCorrectAnswer("wrong"); //3rd re-render
+        }
 
-    setUserAnswers((prevValue) => {
-      const correctAnswers = [...prevValue, selectedAnswer];
-      return correctAnswers;  // 2nd re-render
-    });
-
-    setTimeout(() => {
-      const correctAnswer = Questions[activeQuestionIndex].answers[0]
-    
-    if (correctAnswer === selectedAnswer){
-      setHighlightCorrectAnswer('correct')  //3rd re-render
-                    }
-             else{
-               setHighlightCorrectAnswer('wrong')  //3rd re-render
-          }
-
-          setTimeout(() => {
-            setHighlightCorrectAnswer('')   // 4th re-render
-          }, 2000);
-      
-    }, 1000);
-  },[activeQuestionIndex])
+        setTimeout(() => {
+          setHighlightCorrectAnswer(""); // 4th re-render
+        }, 2000);
+      }, 1000);
+    },
+    [activeQuestionIndex]
+  );
 
   console.log(highlightCorrectAnswer);
-  
-  const handleSkipAnswer = useCallback(()=>handleSelectAnswer(null),[handleSelectAnswer])
 
-  if(quizIsComplete){
-    return <div id="summary">
-      <img src={complete} alt="complete quiz image" />
-      <h2>Quiz Completed</h2></div>;
+  const handleSkipAnswer = useCallback(
+    () => handleSelectAnswer(null),
+    [handleSelectAnswer]
+  );
+
+  if (quizIsComplete) {
+    return (
+      <div id="summary">
+        <img src={complete} alt="complete quiz image" />
+        <h2>Quiz Completed</h2>
+      </div>
+    );
   }
-  
-
 
  
-    
 
-
-   
   
-  // Shuffle answers for the current question
-  const shuffleAnswers = [...Questions[activeQuestionIndex]?.answers];
-  shuffleAnswers.sort(() => Math.random() - 0.5);
-
-  return ( 
-            <div id="quiz">
-                   <div id="question">
-
-                    {/* no answer per automatic null dal dega array me */}
-                   <QuestionTimer key={activeQuestionIndex} Timeout={15000} onTimeout={handleSkipAnswer}/>
-            <h2>{Questions[activeQuestionIndex]?.text}</h2>
-            
-            <ul id="answers">
-              {shuffleAnswers.map((answer) =>  {
-const isSelected = userAnswers[userAnswers.length - 1] === answer;
-
-let cssStyle = '';
- if(highlightCorrectAnswer === "answered" && isSelected){
-  cssStyle = 'selected'
- }
-
- if((highlightCorrectAnswer === "correct" || highlightCorrectAnswer === "wrong") && isSelected) {
-cssStyle = highlightCorrectAnswer
- }
-                return <li key={answer} className="answer">
-
-                {/* yha answer dene per array me answer push hoga */}
-                
-                <button className={cssStyle} onClick={() => handleSelectAnswer(answer)}>
-                  {answer}
-                </button>
-                
-              </li>
-              }
-              )}
-              
-            </ul>
-          </div>
-        </div>
-      )}
-
-
+  return (
+    <div id="quiz">
+     <Question
+      key={activeQuestionIndex} 
+      question={Questions[activeQuestionIndex]?.text}
+      answers={Questions[activeQuestionIndex]?.answers}
+     onSelectAnswer={handleSelectAnswer}
+     onSelectSkip={handleSkipAnswer}
+     userAnsState = {userAnswers[userAnswers.length - 1]}
+     highlightCorrectAnswer={highlightCorrectAnswer}
+     
+     />
+    </div>
+  );
+}
