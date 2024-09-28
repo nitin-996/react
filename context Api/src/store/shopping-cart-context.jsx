@@ -10,12 +10,16 @@ const CartContext = createContext({
 function shoppingCartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
     const updatedItems = [...state.items];
-
+    console.log(`cart added items ${JSON.stringify(updatedItems)}`);
     const existingCartItemIndex = updatedItems.findIndex(
-      (cartItem) => cartItem.id === action.payload
-    );
-    const existingCartItem = updatedItems[existingCartItemIndex];
+      (cartItem) => { 
+        console.log(`exitingcart ${JSON.stringify(cartItem.id)}`);
+        console.log(`exitingcart ${JSON.stringify(action.payload)}`);
+        return cartItem.id === action.payload}
 
+          );
+    const existingCartItem = updatedItems[existingCartItemIndex];
+    console.log(`exitingcartitem ${JSON.stringify(existingCartItem)}`);
     if (existingCartItem) {
       const updatedItem = {
         ...existingCartItem,

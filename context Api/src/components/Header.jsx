@@ -8,7 +8,7 @@ export default function Header() {
 
   const {items} = useContext(CartContext)
   const cartQuantity = items?.length;
-  console.log(items);
+ 
   
 
   function handleOpenCartClick() {

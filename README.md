@@ -22,6 +22,8 @@
 
 - [contextapi](https://www.freecodecamp.org/news/context-api-in-react/).The default value set when creating the context is only used if a component that was not wrapped by the provider component tries to access the context value.
 - [useReducer](https://dev.to/spukas/3-reasons-to-usereducer-over-usestate-43ad)
+- [useCallback vs useMemo](https://www.freecodecamp.org/news/difference-between-usememo-and-usecallback-hooks/)
+- [component composition](https://www.geeksforgeeks.org/react-js-component-composition/)
 # optional chaining operator
 
 
