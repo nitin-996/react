@@ -22,8 +22,10 @@
 
 - [contextapi](https://www.freecodecamp.org/news/context-api-in-react/).The default value set when creating the context is only used if a component that was not wrapped by the provider component tries to access the context value.
 - [useReducer](https://dev.to/spukas/3-reasons-to-usereducer-over-usestate-43ad)
-- [useCallback vs useMemo](https://www.freecodecamp.org/news/difference-between-usememo-and-usecallback-hooks/)
-- [component composition](https://www.geeksforgeeks.org/react-js-component-composition/)
+- [react 19 feature](https://www.freecodecamp.org/news/new-react-19-features/)
+- [usememo vs memo](https://www.geeksforgeeks.org/difference-between-react-memo-and-usememo-in-react/)
+- [usecallback vs usememo](https://www.freecodecamp.org/news/difference-between-usememo-and-usecallback-hooks/)
+- [html for attribute](https://www.geeksforgeeks.org/html-label-for-attribute/)
 # optional chaining operator
 
 
@@ -57,6 +59,7 @@ In summary, the question mark (`?`) in your code helps prevent errors by checkin
 2. **Only Call Hooks from React Functions**
    - **Do not call hooks from regular JavaScript functions.**
    
+
 # usestate
 
 ![workflow](react_topics/public/state.png)
@@ -65,6 +68,10 @@ In summary, the question mark (`?`) in your code helps prevent errors by checkin
 
 ![lift state means](tic-tac-toe-starting-project/public/lift_state.png)
 
+
+# classBased components cannot use hooks.
+
+![how classbase components handle side effect](react_topics/public/class_component.png)
 
 # hooks explaination
 
@@ -508,3 +515,17 @@ const [isClicked, setIsClicked] = useState(false);
 - Whenever your component needs to **re-render** based on some value change.
 
 Let me know if you need examples related to specific cases you're working on!
+
+# disable option available in many html element 
+
+In HTML, the `disabled` property can be applied to a variety of form-related elements to prevent user interaction. Here's a list of elements that support the `disabled` attribute:
+
+1. **`<button>`**: Disables the button so it cannot be clicked.
+2. **`<input>`**: Disables various input types (`text`, `checkbox`, `radio`, `password`, `file`, etc.).
+3. **`<select>`**: Disables the dropdown menu, preventing users from selecting any options.
+4. **`<textarea>`**: Disables the text area, preventing users from entering or modifying text.
+5. **`<fieldset>`**: Disables all form controls within the fieldset (grouping of form elements).
+6. **`<optgroup>`**: Disables a group of options inside a `<select>` element.
+7. **`<option>`**: Disables a specific option inside a `<select>` dropdown.
+
+These are the main elements in HTML that can have the `disabled` attribute, ensuring they are non-interactive when the attribute is present.cd 

@@ -40,6 +40,7 @@ export default function Answers({
             <button
               className={cssStyle}
               onClick={() => onSelect(answer)}
+              disabled={highlightCorrectAnswer !==''}
             >
               {answer}
             </button>

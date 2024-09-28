@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useState } from "react"
 
 import Question from './Question'
 import complete from "../assets/quiz-complete.png";
@@ -6,14 +6,11 @@ import Questions from "../Questions";
 
 export default function Quiz() {
   // yha answers store kerna h
-  const [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState("");
   const [userAnswers, setUserAnswers] = useState([]);
-  const activeQuestionIndex =
-    highlightCorrectAnswer === ""
-      ? userAnswers?.length
-      : userAnswers.length - 1;
+  const activeQuestionIndex = userAnswers?.length
+      
   const quizIsComplete = Questions.length === activeQuestionIndex;
-  console.log(activeQuestionIndex);
+ 
   
 
   /* In React, when a parent component re-renders, all of its child components also re-render by default.
@@ -37,31 +34,15 @@ export default function Quiz() {
 
   const handleSelectAnswer = useCallback(
     function handleSelectAnswer(selectedAnswer) {
-      setHighlightCorrectAnswer("answered"); // 1st re-render
 
       setUserAnswers((prevValue) => {
         const correctAnswers = [...prevValue, selectedAnswer];
         return correctAnswers; // 2nd re-render
       });
-
-      setTimeout(() => {
-        const correctAnswer = Questions[activeQuestionIndex].answers[0];
-
-        if (correctAnswer === selectedAnswer) {
-          setHighlightCorrectAnswer("correct"); //3rd re-render
-        } else {
-          setHighlightCorrectAnswer("wrong"); //3rd re-render
-        }
-
-        setTimeout(() => {
-          setHighlightCorrectAnswer(""); // 4th re-render
-        }, 2000);
-      }, 1000);
     },
-    [activeQuestionIndex]
+    []
   );
 
-  console.log(highlightCorrectAnswer);
 
   const handleSkipAnswer = useCallback(
     () => handleSelectAnswer(null),
@@ -84,12 +65,10 @@ export default function Quiz() {
     <div id="quiz">
      <Question
       key={activeQuestionIndex} 
-      question={Questions[activeQuestionIndex]?.text}
-      answers={Questions[activeQuestionIndex]?.answers}
+      Index={activeQuestionIndex}
      onSelectAnswer={handleSelectAnswer}
      onSelectSkip={handleSkipAnswer}
-     userAnsState = {userAnswers[userAnswers.length - 1]}
-     highlightCorrectAnswer={highlightCorrectAnswer}
+     
      
      />
     </div>
