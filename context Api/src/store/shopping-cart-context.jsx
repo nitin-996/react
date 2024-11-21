@@ -7,14 +7,18 @@ const CartContext = createContext({
   UpdateCartItemQuantity: () => {},
 });
 
-function shoppingCartReducer(state, action) {
+function shoppingCartReducer(state, action) { 
   if (action.type === "ADD_ITEM") {
     const updatedItems = [...state.items];
 
     const existingCartItemIndex = updatedItems.findIndex(
       (cartItem) => cartItem.id === action.payload
     );
+
+   
+    
     const existingCartItem = updatedItems[existingCartItemIndex];
+
 
     if (existingCartItem) {
       const updatedItem = {
@@ -22,6 +26,8 @@ function shoppingCartReducer(state, action) {
         quantity: existingCartItem.quantity + 1,
       };
       updatedItems[existingCartItemIndex] = updatedItem;
+      console.log(`third ${JSON.stringify(updatedItems[existingCartItemIndex])}`);
+      
     } else {
       const product = DUMMY_PRODUCTS.find((product) => product.id === action.payload);
       updatedItems.push({
