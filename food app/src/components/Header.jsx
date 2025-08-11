@@ -1,4 +1,5 @@
 import logo from "../../public/logo.jpg"
+import Button from "./Button"
 
 
 function Header(){
@@ -11,9 +12,7 @@ function Header(){
         </div>
 
         <nav>
-            <button >
-            Cart (0)
-        </button>
+            <Button textOnly>Cart (0)</Button>
         </nav>
 
 

@@ -66,4 +66,9 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3000);
+app.listen(3000 , (err)=> {
+  if(err) return err;
+
+  else console.log("server started on 3000");
+    
+});
