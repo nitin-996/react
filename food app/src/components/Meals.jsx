@@ -26,7 +26,7 @@ function Meals() {
       ) : (
         
         <ul id="meals">{loadmeals.map((meal) => (
-          <Meals_items key={meal} item={meal} /> // ✅ render meal name
+          <Meals_items key={meal.id} item={meal} /> // ✅ render meal name
         ))}
         </ul>
       )}

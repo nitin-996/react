@@ -6,7 +6,7 @@ function Button({textOnly, className,children , ...props }) {
   return (
 
     // if we send addition props like onClick={handleClick},type="button" etc that will comes through ...props 
-    <button className={styling} {...props}>{children}</button>
+    <button className={styling}  {...props}>{children}</button>
   )
 }
 
