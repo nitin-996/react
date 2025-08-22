@@ -24,8 +24,19 @@ function handleCloseCart(){
     progress_CTX.hideCart()
 }
 
+function handleCheckoutCart(){
+   console.log("handle checkoutcart executed");
+ console.log(progress_CTX.progress);
+  progress_CTX.showCheckout()
+
+}
+
   return (
-    <Modal open={progress_CTX.progress === "cart"}>
+    <Modal open={progress_CTX.progress === "cart"} onClose={progress_CTX.progress === "cart" ? handleCloseCart : null
+
+
+      
+    }>
 
         <h3 className="cart">Checkout Modal</h3>
         <ul className="">{cartContext.items.map((item)=>{
@@ -35,7 +46,7 @@ function handleCloseCart(){
         <p className="cart-total">{currencyFormater(totalPrice)}</p>
         <p className="modal-actions">
             <Button textOnly onClick={handleCloseCart} >close</Button>
-            <Button onClick={handleCloseCart}>Checkout</Button>
+            {cartContext.items.length > 0 && <Button onClick={handleCheckoutCart}>Checkout</Button>}
             </p>
     </Modal>
   )

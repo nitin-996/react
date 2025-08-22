@@ -37,7 +37,7 @@ export function ProgressContextProvider({children}){
 
 
     const progressCTX = {
-        progress:progressCart,
+        progress: progressCart,
         showCart,
         hideCart,
         showCheckout,

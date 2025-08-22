@@ -52,6 +52,8 @@ app.post('/orders', async (req, res) => {
     id: (Math.random() * 1000).toString(),
   };
   const orders = await fs.readFile('./data/orders.json', 'utf8');
+  console.log(orders);
+  
   const allOrders = JSON.parse(orders);
   allOrders.push(newOrder);
   await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
